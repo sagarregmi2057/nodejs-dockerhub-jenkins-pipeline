@@ -30,7 +30,11 @@ pipeline {
             steps {
              
 
-            sh 'docker.build("nodeimage"+"BUILD_NUMBER")'
+               script {
+                docker.build("nodeimage"+"BUILD_NUMBER")
+               }
+
+           
 
             }
         }
@@ -46,4 +50,6 @@ pipeline {
             echo 'Build failed. Check logs.'
         }
     }
+}
+
 }

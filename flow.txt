@@ -1,0 +1,12 @@
+cd /var/jenkins_home/workspace/nodeApp
+docker build -t testimage .
+
+winpty docker exec -it -u root jenkins bash
+
+
+
+docker build -t testimage .
+
+
+docker ps
+docker build -t testimage .

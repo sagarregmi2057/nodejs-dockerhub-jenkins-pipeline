@@ -28,18 +28,11 @@ pipeline {
 
         stage('Build Docker Image') {
             steps {
-             
-
-               script {
-                docker.build("nodeimage"+"BUILD_NUMBER")
-               }
-
-           
-
+              sh 'docker.build("nodeimage"+"BUILD_NUMBER")'
             }
         }
 
-        stage('Push Docker Image') {
+      
     }
 
     post {
@@ -50,6 +43,4 @@ pipeline {
             echo 'Build failed. Check logs.'
         }
     }
-}
-
 }

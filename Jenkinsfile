@@ -25,6 +25,17 @@ pipeline {
               
             }
         }
+
+        stage('Build Docker Image') {
+            steps {
+             
+
+            sh 'docker.build("nodeimage"+"BUILD_NUMBER")'
+
+            }
+        }
+
+        stage('Push Docker Image') {
     }
 
     post {

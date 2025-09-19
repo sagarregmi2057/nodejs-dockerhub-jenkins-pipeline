@@ -36,13 +36,13 @@ pipeline {
         }
         stage('Push Docker Image') {
             steps {
-            script {
-               sh """
-            echo "$DOCKERHUB_TOKEN" | docker login -u saga99 --password-stdin
-            docker push saga99/nodeimage:${BUILD_NUMBER}
-            docker push saga99/nodeimage:latest
-            """
-              }
+                    script {
+                     sh """
+                 echo "$DOCKERHUB_TOKEN" | docker login -u saga99 --password-stdin
+                docker push saga99/nodeimage:${BUILD_NUMBER}
+                 docker push saga99/nodeimage:latest
+                     """
+                       }
             }
             }
         }
@@ -58,4 +58,4 @@ pipeline {
             echo 'Build failed. Check logs.'
         }
     }
-}
+

@@ -30,7 +30,16 @@ pipeline {
             steps {
               script {
                 // docker.build("nodeimage"+"$BUILD_NUMBER")
-                docker.build("nodeimage:${BUILD_NUMBER}")
+                docker.build("saga99/nodeimage:${BUILD_NUMBER}")
+              }
+            }
+        }
+        stage('Push Docker Image') {
+            steps {
+              script {
+                docker.withRegistry('https://docker.io', 'docker-hub-credentials') {
+                  docker.image('saga99/nodeimage:${BUILD_NUMBER}').push()
+                }
               }
             }
         }

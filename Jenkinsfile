@@ -37,11 +37,13 @@ pipeline {
         stage('Push Docker Image') {
             steps {
               script {
-             docker.withRegistry('https://docker.io', 'dockerhub-credentials-id') {
-                  docker.image('saga99/nodeimage:${BUILD_NUMBER}').push()
-                  docker.image('saga99/nodeimage:latest').push()
-                }
-              }
+            docker.withRegistry('https://docker.io', 'dockerhub-credentials-id') {
+                // Push current build
+                docker.image("saga99/nodeimage:${BUILD_NUMBER}").push()
+                // Push latest tag
+                docker.image("saga99/nodeimage:latest").push()
+            }
+        }
             }
         }
 

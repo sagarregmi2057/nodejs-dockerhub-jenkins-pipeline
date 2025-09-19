@@ -37,7 +37,7 @@ pipeline {
         stage('Push Docker Image') {
             steps {
               script {
-             docker.withRegistry('https://docker.io', 'docker-hub-credentials') {
+             docker.withRegistry('https://docker.io', 'dockerhub-credentials-id') {
                   docker.image('saga99/nodeimage:${BUILD_NUMBER}').push()
                   docker.image('saga99/nodeimage:latest').push()
                 }

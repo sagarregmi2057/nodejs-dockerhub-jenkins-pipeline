@@ -37,13 +37,11 @@ pipeline {
         stage('Push Docker Image') {
             steps {
               script {
-                
                sh """
                 echo "$DOCKERHUB_TOKEN" | docker login -u saga99 --password-stdin
                 docker image push saga99/nodeimage:${BUILD_NUMBER}
                 docker image push saga99/nodeimage:latest
             """
-                }
               }
             }
         }

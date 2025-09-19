@@ -29,8 +29,8 @@ pipeline {
         stage('Build Docker Image') {
             steps {
               script {
-                // docker.build("nodeimage"+"$BUILD_NUMBER")
-                docker.build("saga99/nodeimage:${BUILD_NUMBER}")
+                   def img = docker.build("saga99/nodeimage:${BUILD_NUMBER}")
+                   img.tag("latest")
               }
             }
         }
@@ -38,9 +38,9 @@ pipeline {
             steps {
               script {
                sh """
-                echo "$DOCKERHUB_TOKEN" | docker login -u saga99 --password-stdin
-                docker image push saga99/nodeimage:${BUILD_NUMBER}
-                docker image push saga99/nodeimage:latest
+            echo "$DOCKERHUB_TOKEN" | docker login -u saga99 --password-stdin
+            docker push saga99/nodeimage:${BUILD_NUMBER}
+            docker push saga99/nodeimage:latest
             """
               }
             }
